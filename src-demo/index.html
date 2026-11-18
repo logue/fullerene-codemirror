@@ -1,17 +1,45 @@
 <!doctype html>
-<html lang="en">
+<html class="cds--white" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" rel="stylesheet" />
-    <title>Hello world!</title>
+    <title>Fullerene CodeMirror Theme Playground</title>
   </head>
   <body>
-    <main class="container">
-      <h1>Hello world!</h1>
-      <input id="input" placeholder="Input" type="number" aria-label="Input" />
-      <input id="output" placeholder="Output" type="number" readonly aria-label="Output" />
+    <header class="demo-header">
+      <div class="demo-header__content">
+        <h1 class="demo-header__title">Fullerene CodeMirror Theme</h1>
+        <p>CodeMirror 6 theme built on Carbon Design System color tokens.</p>
+      </div>
+      <div class="demo-header__actions">
+        <cds-link href="https://github.com/logue/fullerene-codemirror">GitHub</cds-link>
+        <cds-toggle
+          id="theme-toggle"
+          label-a="Dark"
+          label-b="Light"
+          label-text="Theme"
+          size="sm"
+        ></cds-toggle>
+      </div>
+    </header>
+    <main class="demo-main">
+      <cds-grid class="demo-grid">
+        <cds-column lg="4" md="8" sm="4">
+          <cds-select id="language-select" label-text="Language" value="javascript">
+            <cds-select-item value="javascript">JavaScript</cds-select-item>
+            <cds-select-item value="typescript">TypeScript</cds-select-item>
+            <cds-select-item value="html">HTML</cds-select-item>
+            <cds-select-item value="css">CSS</cds-select-item>
+            <cds-select-item value="json">JSON</cds-select-item>
+            <cds-select-item value="markdown">Markdown</cds-select-item>
+            <cds-select-item value="python">Python</cds-select-item>
+          </cds-select>
+        </cds-column>
+        <cds-column lg="16" md="8" sm="4">
+          <code-mirror id="cm" class="demo-editor" basic></code-mirror>
+        </cds-column>
+      </cds-grid>
     </main>
   </body>
 </html>
