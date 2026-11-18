@@ -1,6 +1,6 @@
 {
   "extends": "@tsconfig/node-lts/tsconfig.json",
-  "include": ["env.d.ts", "rstack.config.*", "package.json"],
+  "include": ["env.d.ts", "rstack.config.*", "package.json", "./scripts/*"],
   "exclude": ["**/node_modules", "**/.*/"],
   "compilerOptions": {
     "composite": true,

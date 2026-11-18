@@ -1,11 +1,34 @@
 #!/bin/sh
 
 # post-merge receives a single argument: 1 when the merge was a squash merge.
-# Sync AI Agent skills only when the merge changed skills-lock.json.
-if ! git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD 2>/dev/null | grep -qx 'skills-lock.json'; then
-  exit 0
+CHANGED_FILES=$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD 2>/dev/null)
+
+changed() {
+  echo "$CHANGED_FILES" | grep -qx "$1"
+}
+
+# Regenerate Carbon palettes when the lockfile (e.g. @carbon/themes version)
+# or the generator script changed.
+if changed 'pnpm-lock.yaml' || changed 'scripts/generate-palettes.ts'; then
+  if changed 'pnpm-lock.yaml'; then
+    echo "📦 Rstack Hooks: pnpm-lock.yaml changed. Installing dependencies..."
+    pnpm install --frozen-lockfile || exit 0
+  fi
+
+  echo "🎨 Rstack Hooks: Regenerating Carbon palettes..."
+  if pnpm run --silent generate:palettes; then
+    if ! git diff --quiet -- src/light-mode.ts src/dark-mode.ts src/types/Palette.d.ts; then
+      echo "\033[1;33m⚠️  Palettes were updated. Review and commit the changes.\033[0m"
+    fi
+  else
+    echo "\033[1;33m⚠️  [Warning] Failed to regenerate palettes. Run 'pnpm run generate:palettes' manually.\033[0m"
+  fi
 fi
 
+# Sync AI Agent skills only when the merge changed skills-lock.json.
+if ! changed 'skills-lock.json'; then
+  exit 0
+fi
 
 echo "🔄 Rstack Hooks: Checking AI Agent Skills environment..."
 
