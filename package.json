@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:logue/fullerene-codemirror.git"
+    "url": "git+ssh://git@github.com/logue/fullerene-codemirror.git"
   },
   "funding": [
     {
@@ -121,5 +121,8 @@
   "engines": {
     "node": ">=22",
     "pnpm": ">=12.19"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
