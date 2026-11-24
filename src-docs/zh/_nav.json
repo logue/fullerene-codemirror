@@ -1,0 +1,5 @@
+[
+  { "text": "指南", "link": "/zh/guide/start/introduction", "activeMatch": "/zh/guide/" },
+  { "text": "API", "link": "/zh/api/", "activeMatch": "/zh/api/" },
+  { "text": "演练场", "link": "/zh/playground", "activeMatch": "/zh/playground" }
+]

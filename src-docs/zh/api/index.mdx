@@ -1,0 +1,70 @@
+---
+description: '@c60/codemirror-theme 的 API 参考。'
+---
+
+# API 参考
+
+## 现成主题
+
+CodeMirror 主题是 [`Extension`](https://codemirror.net/docs/guide/#extension) 类型。
+
+| 导出              | 类型        | 说明                                              |
+| ----------------- | ----------- | ------------------------------------------------- |
+| `carbonLight`     | `Extension` | 浅色主题，`--cds-*` 带 Carbon White 后备值。      |
+| `carbonDark`      | `Extension` | 深色主题，`--cds-*` 带 Carbon Gray 100 后备值。   |
+| `carbonVariables` | `Extension` | 直接引用 `--cds-*` 变量，无后备值，浅色基础主题。 |
+
+## 工厂函数
+
+### createCarbonTheme
+
+```ts
+function createCarbonTheme(palette: Palette | null, dark: boolean): Extension;
+```
+
+返回编辑器主题与语法高亮的组合。
+将 `palette` 设为 `null` 时，变量不带后备值引用。
+
+### createCarbonVariablesTheme
+
+```ts
+function createCarbonVariablesTheme(dark?: boolean): Extension;
+```
+
+`createCarbonTheme(null, dark)` 的快捷方式。`dark` 默认为 `false`。
+参见[变量模式](/zh/guide/start/modes#variables-mode)。
+
+### createTheme
+
+```ts
+function createTheme(palette: Palette | null, dark: boolean): Extension;
+```
+
+仅返回编辑器界面（`EditorView.theme`），不含语法高亮。
+
+### createHighlightStyle
+
+```ts
+function createHighlightStyle(palette: Palette | null): HighlightStyle;
+```
+
+仅返回使用 `--cds-syntax-*` 令牌的语法高亮。
+请用 `@codemirror/language` 的 `syntaxHighlighting()` 包装后使用。
+
+## 调色板
+
+| 导出           | 类型      | 说明                     |
+| -------------- | --------- | ------------------------ |
+| `lightPalette` | `Palette` | Carbon White 令牌值。    |
+| `darkPalette`  | `Palette` | Carbon Gray 100 令牌值。 |
+
+`Palette` 将 camelCase 令牌名映射到颜色。键 `fooBar01` 对应
+CSS 变量 `--cds-foo-bar-01`。
+
+## Meta
+
+```ts
+const Meta: { version: string; date: string };
+```
+
+库的版本和构建日期。

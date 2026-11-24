@@ -1,0 +1,5 @@
+[
+  { "text": "ガイド", "link": "/ja/guide/start/introduction", "activeMatch": "/ja/guide/" },
+  { "text": "API", "link": "/ja/api/", "activeMatch": "/ja/api/" },
+  { "text": "プレイグラウンド", "link": "/ja/playground", "activeMatch": "/ja/playground" }
+]

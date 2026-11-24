@@ -1,0 +1,70 @@
+---
+description: '@c60/codemirror-theme の API リファレンス。'
+---
+
+# API リファレンス
+
+## 既製のテーマ
+
+CodeMirror のテーマは [`Extension`](https://codemirror.net/docs/guide/#extension) 型です。
+
+| エクスポート      | 型          | 説明                                                               |
+| ----------------- | ----------- | ------------------------------------------------------------------ |
+| `carbonLight`     | `Extension` | ライトテーマ。`--cds-*` に Carbon White のフォールバック付き。     |
+| `carbonDark`      | `Extension` | ダークテーマ。`--cds-*` に Carbon Gray 100 のフォールバック付き。  |
+| `carbonVariables` | `Extension` | `--cds-*` 変数をそのまま参照（フォールバックなし、ライトベース）。 |
+
+## ファクトリー関数
+
+### createCarbonTheme
+
+```ts
+function createCarbonTheme(palette: Palette | null, dark: boolean): Extension;
+```
+
+エディターテーマとシンタックスハイライトを組み合わせて返します。
+`palette` に `null` を渡すと、変数をフォールバックなしで参照します。
+
+### createCarbonVariablesTheme
+
+```ts
+function createCarbonVariablesTheme(dark?: boolean): Extension;
+```
+
+`createCarbonTheme(null, dark)` のショートカットです。`dark` の既定値は `false` です。
+[変数モード](/ja/guide/start/modes#variables-mode)を参照してください。
+
+### createTheme
+
+```ts
+function createTheme(palette: Palette | null, dark: boolean): Extension;
+```
+
+シンタックスハイライトを含まない、エディターの UI（`EditorView.theme`）のみを返します。
+
+### createHighlightStyle
+
+```ts
+function createHighlightStyle(palette: Palette | null): HighlightStyle;
+```
+
+`--cds-syntax-*` トークンを使ったシンタックスハイライトのみを返します。
+`@codemirror/language` の `syntaxHighlighting()` で包んで使います。
+
+## パレット
+
+| エクスポート   | 型        | 説明                           |
+| -------------- | --------- | ------------------------------ |
+| `lightPalette` | `Palette` | Carbon White のトークン値。    |
+| `darkPalette`  | `Palette` | Carbon Gray 100 のトークン値。 |
+
+`Palette` は camelCase のトークン名を色に対応付けたものです。キー `fooBar01` は
+CSS 変数 `--cds-foo-bar-01` になります。
+
+## Meta
+
+```ts
+const Meta: { version: string; date: string };
+```
+
+ライブラリのバージョンとビルド日時です。

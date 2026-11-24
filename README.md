@@ -2,9 +2,11 @@
 
 Fullerene (Carbon Design System based) theme for [CodeMirror 6](https://codemirror.net/).
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-7-%230074c1.svg)](http://www.typescriptlang.org/)
-[![pnpm](https://img.shields.io/badge/pnpm-12-pink.svg)](https://pnpm.io/)
-[![Rstack](https://img.shields.io/badge/rstack-0.9.4-orange.svg)](https://rstack.rs/)
+[![npm version](https://img.shields.io/npm/v/@c60/codemirror-theme.svg)](https://www.npmjs.com/package/@c60/codemirror-theme)
+[![NPM Downloads](https://img.shields.io/npm/dm/@c60/codemirror-theme.svg?style=flat)](https://www.npmjs.com/package/@c60/codemirror-theme)
+[![jsdelivr CDN](https://data.jsdelivr.com/v1/package/npm/@c60/codemirror-theme/badge)](https://www.jsdelivr.com/package/npm/@c60/codemirror-theme)
+[![Open in unpkg](https://img.shields.io/badge/Open%20in-unpkg-blue)](https://uiwjs.github.io/npm-unpkg/#/pkg/@logue/@c60/codemirror-theme/file/README.md)
+[![Open in Gitpod](https://shields.io/badge/Open%20in-Gitpod-green?logo=Gitpod)](https://gitpod.io/#https://github.com/logue/@c60/codemirror-theme)
 [![X Follow](https://img.shields.io/twitter/follow/logue256?style=plastic)](https://x.com/logue256)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/logue?label=Sponsor&logo=github&color=ea4aaa)](https://github.com/sponsors/logue)
 

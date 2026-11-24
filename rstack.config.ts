@@ -237,6 +237,18 @@ define.doc({
       label: 'English',
       title: 'Fullerene CodeMirror',
       description: packageJson.description
+    },
+    {
+      lang: 'ja',
+      label: '日本語',
+      title: 'Fullerene CodeMirror',
+      description: 'Carbon デザインシステムをベースにした CodeMirror 用テーマ'
+    },
+    {
+      lang: 'zh',
+      label: '简体中文',
+      title: 'Fullerene CodeMirror',
+      description: '基于 Carbon 设计系统的 CodeMirror 主题'
     }
   ],
   // generate llms.txt
