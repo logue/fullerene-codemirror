@@ -16,11 +16,15 @@ export type { Palette };
 const toVariable = (key: string): string =>
   `--cds-${key.replace(/(?<=[a-z])(?=[A-Z0-9])/g, '-').toLowerCase()}`;
 
-/** Returns a color accessor that resolves Carbon tokens with palette fallbacks. */
+/**
+ * Returns a color accessor that resolves Carbon tokens.
+ * With a palette, the palette values are used as fallbacks; with `null`,
+ * the `--cds-*` custom properties are referenced as-is (no fallback).
+ */
 const resolver =
-  (palette: Palette) =>
+  (palette?: Palette) =>
   (key: keyof Palette): string =>
-    `var(${toVariable(key)}, ${palette[key]})`;
+    palette ? `var(${toVariable(key)}, ${palette[key]})` : `var(${toVariable(key)})`;
 
 /** Carbon code typography tokens (font loading is left to the consumer). */
 const typography = {
@@ -32,7 +36,7 @@ const typography = {
 };
 
 /** Creates the editor theme for the given palette. */
-export const createTheme = (palette: Palette, dark: boolean): Extension => {
+export const createTheme = (palette?: Palette, dark = false): Extension => {
   const c = resolver(palette);
   return EditorView.theme(
     {
@@ -106,7 +110,7 @@ export const createTheme = (palette: Palette, dark: boolean): Extension => {
 };
 
 /** Creates the highlight style (Carbon `--cds-syntax-*` tokens) for the given palette. */
-export const createHighlightStyle = (palette: Palette): HighlightStyle => {
+export const createHighlightStyle = (palette?: Palette): HighlightStyle => {
   const c = resolver(palette);
   return HighlightStyle.define([
     { tag: t.comment, color: c('syntaxComment'), fontStyle: 'italic' },
@@ -196,7 +200,7 @@ export const createHighlightStyle = (palette: Palette): HighlightStyle => {
 };
 
 /** Creates a complete theme extension (editor theme + highlight style). */
-export const createCarbonTheme = (palette: Palette, dark: boolean): Extension => [
+export const createCarbonTheme = (palette?: Palette, dark = false): Extension => [
   createTheme(palette, dark),
   syntaxHighlighting(createHighlightStyle(palette))
 ];
@@ -206,3 +210,15 @@ export const carbonLight: Extension = createCarbonTheme(lightPalette, false);
 
 /** Carbon dark theme (Gray 100 fallbacks). */
 export const carbonDark: Extension = createCarbonTheme(darkPalette, true);
+
+/**
+ * Creates a theme that uses the `--cds-*` CSS custom properties as-is, without
+ * fallback values. The host page (e.g. Carbon's `cds--g10` / `cds--g100` theme
+ * classes) must define the variables.
+ * @param dark - Whether the surrounding Carbon theme is dark (affects CodeMirror's base theme).
+ */
+export const createCarbonVariablesTheme = (dark = false): Extension =>
+  createCarbonTheme(undefined, dark);
+
+/** Carbon theme referencing `--cds-*` variables directly (no fallbacks, light base). */
+export const carbonVariables: Extension = createCarbonVariablesTheme(false);

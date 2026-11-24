@@ -2,7 +2,14 @@ import { describe, expect, it } from 'rstack/test';
 
 import { EditorState } from '@codemirror/state';
 
-import { carbonDark, carbonLight, darkPalette, lightPalette } from '@/index';
+import {
+  carbonDark,
+  carbonLight,
+  carbonVariables,
+  createCarbonVariablesTheme,
+  darkPalette,
+  lightPalette
+} from '@/index';
 
 describe('palettes', () => {
   it('define the same token keys for light and dark mode', () => {
@@ -18,7 +25,9 @@ describe('palettes', () => {
 describe('themes', () => {
   it.each([
     ['light', carbonLight],
-    ['dark', carbonDark]
+    ['dark', carbonDark],
+    ['variables', carbonVariables],
+    ['variables (dark)', createCarbonVariablesTheme(true)]
   ])('%s theme can be loaded into an editor state', (_, theme) => {
     expect(() => EditorState.create({ extensions: theme })).not.toThrow();
   });

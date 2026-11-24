@@ -1,105 +1,12 @@
-# Rstack Library starter template
+# @c60/codemirror-theme
+
+Fullerene for Codemirror Theme.
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-7-%230074c1.svg)](http://www.typescriptlang.org/)
 [![pnpm](https://img.shields.io/badge/pnpm-12-pink.svg)](https://pnpm.io/)
-[![Rstack](https://img.shields.io/badge/rsbuild-0.9.4-orange.svg)](https://rstack.rs/)
+[![Rstack](https://img.shields.io/badge/rstack-0.9.4-orange.svg)](https://rstack.rs/)
 [![X Follow](https://img.shields.io/twitter/follow/logue256?style=plastic)](https://x.com/logue256)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/logue?label=Sponsor&logo=github&color=ea4aaa)](https://github.com/sponsors/logue)
-
-## Setup
-
-Install the dependencies:
-
-```bash
-pnpm install
-```
-
-## Get started
-
-Build the library:
-
-```bash
-pnpm run build
-```
-
-Build for the web demo. The output is written to `src-docs/public/demo/` and displayed on the documentation site's Playground page.
-
-```bash
-pnpm run build:demo
-```
-
-Buid for the documentation site.
-
-```bash
-pnpm run build:docs
-```
-
-This command builds the demo before building the documentation site.
-
-Build the library in watch mode:
-
-```bash
-pnpm run dev
-```
-
-Build the documentation in watch mode:
-
-```bash
-pnpm run dev:docs
-```
-
-Run tests:
-
-```bash
-pnpm run test
-```
-
-Run tests in watch mode:
-
-```bash
-pnpm run test:watch
-```
-
-Run build analysis. (Rsdoctor)
-
-```bash
-pnpm run analyze
-```
-
-### TypeScript Configuration
-
-Separate tsconfig files for different purposes:
-
-- `tsconfig.node.json` - Bundler
-- `tsconfig.rslib.json` - Library bundling
-- `tsconfig.rsbuild.json` - Demo
-- `tsconfig.rspress.json` - documentation site
-- `tsconfig.rstest.json` - Testing
-
-## 🔒️ Safety Measures
-
-This template has `"private": true` in `package.json` as a default safety measure.
-
-**Before publishing to npm:**
-
-1. Change `"private": false`
-2. Ensure your package name is unique and correct
-3. Review your `package.json` metadata (description, keywords, repository, etc.)
-
-This prevents accidental npm publishes during development.
-
-## 📝 Checklist
-
-When using this template, follow the checklist to update your info properly.
-
-- [ ] Change the author name in LICENSE
-- [ ] Update package name and metadata in `package.json`
-- [ ] Change `umdName` in `rstack.config.ts`
-- [ ] When outputting a documentation site, if the package name in `rstack.config.ts` differs from the repository name, modify the `base` value in `define.doc` as needed. (By default, the base path is the package name with the `@` namespace removed.)
-- [ ] **Set `"private": false`** (currently `true` as a safety measure)
-- [ ] Review and adapt `AGENTS.md` for your project conventions
-- [ ] Clean up the READMEs
-- [ ] Publish your project.
 
 ## License
 
