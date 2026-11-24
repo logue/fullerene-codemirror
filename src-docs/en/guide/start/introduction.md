@@ -1,19 +1,29 @@
 ---
-description: Introduction to Rspress features, including build performance, AI-native output, MDX, and extensibility.
+description: What @c60/codemirror-theme is and how it maps Carbon tokens to CodeMirror.
 ---
 
 # Introduction
 
-Rspress is a static site generator based on [Rsbuild](https://rsbuild.rs/), rendered with the React framework. It comes with a default documentation theme, and you can quickly build a documentation site with Rspress.
+`@c60/codemirror-theme` is a [CodeMirror 6](https://codemirror.net/) theme based on the [Carbon Design System](https://carbondesignsystem.com/) (Fullerene).
 
-## Why Rspress
+Every color in the theme is written as a Carbon CSS custom property:
 
-- **Build Performance**. The core compilation module is based on the Rust front-end toolchain, providing millisecond-level startup and a more ultimate development experience.
-- **AI-native**. Technical documentation not only serves human readers but can also be better understood and utilized by AI through SSG-MD.
-- **MDX Support**. MDX is a powerful way to write content, allowing you to use React components in Markdown.
-- **Basic Capabilities**. Including full-text search, internationalization, multi-version support, component library documentation, etc.
-- **Extensibility**. Provides a built-in plugin system, supports extending Rspress through plugin API.
+```css
+color: var(--cds-text-primary, #161616);
+```
 
-## Try Rspress
+- When the page loads a Carbon theme, the editor follows it automatically.
+- When it does not, the bundled palette value after the comma is used.
 
-Go to [Getting Started](/guide/start/getting-started) to learn how to use Rspress to build a documentation site.
+## What is themed
+
+| Area                     | Carbon tokens                                                           |
+| ------------------------ | ----------------------------------------------------------------------- |
+| Editor background / text | `--cds-background`, `--cds-text-primary`                                |
+| Cursor                   | `--cds-focus`                                                           |
+| Selection, search match  | `--cds-highlight`, `--cds-layer-selected-01`                            |
+| Active line              | `--cds-background-selected`                                             |
+| Gutters, panels          | `--cds-layer-01`, `--cds-border-subtle-01`, `--cds-text-helper`         |
+| Tooltips, autocomplete   | `--cds-layer-02`, `--cds-layer-selected-01`                             |
+| Syntax highlighting      | `--cds-syntax-*` (one token per `@lezer/highlight` tag)                 |
+| Typography               | `--cds-code-02-*` (IBM Plex Mono by default; font loading is up to you) |

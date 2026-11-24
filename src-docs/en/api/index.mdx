@@ -1,7 +1,68 @@
 ---
-title: API Overview
-description: Overview page for the Rspress starter API section and available reference pages.
-overview: true
+description: API reference for @c60/codemirror-theme.
 ---
 
-This is an API Overview page which outlines all the available APIs.
+# API Reference
+
+## Ready-made themes
+
+| Export            | Type        | Description                                                |
+| ----------------- | ----------- | ---------------------------------------------------------- |
+| `carbonLight`     | `Extension` | Light theme, `--cds-*` with Carbon White fallbacks.        |
+| `carbonDark`      | `Extension` | Dark theme, `--cds-*` with Carbon Gray 100 fallbacks.      |
+| `carbonVariables` | `Extension` | `--cds-*` variables as-is, no fallbacks, light base theme. |
+
+## Factory functions
+
+### createCarbonTheme
+
+```ts
+function createCarbonTheme(palette: Palette | null, dark: boolean): Extension;
+```
+
+Returns the editor theme and syntax highlighting combined.
+Pass `null` as `palette` to reference the variables without fallbacks.
+
+### createCarbonVariablesTheme
+
+```ts
+function createCarbonVariablesTheme(dark?: boolean): Extension;
+```
+
+Shortcut for `createCarbonTheme(null, dark)`. `dark` defaults to `false`.
+See [Variables mode](/guide/start/modes#variables-mode).
+
+### createTheme
+
+```ts
+function createTheme(palette: Palette | null, dark: boolean): Extension;
+```
+
+Only the editor chrome (`EditorView.theme`), without syntax highlighting.
+
+### createHighlightStyle
+
+```ts
+function createHighlightStyle(palette: Palette | null): HighlightStyle;
+```
+
+Only the syntax highlighting, using `--cds-syntax-*` tokens. Wrap it with
+`syntaxHighlighting()` from `@codemirror/language`.
+
+## Palettes
+
+| Export         | Type      | Description                   |
+| -------------- | --------- | ----------------------------- |
+| `lightPalette` | `Palette` | Carbon White token values.    |
+| `darkPalette`  | `Palette` | Carbon Gray 100 token values. |
+
+`Palette` maps camelCase token names to colors. Each key `fooBar01` becomes the
+CSS variable `--cds-foo-bar-01`.
+
+## Meta
+
+```ts
+const Meta: { version: string; date: string };
+```
+
+Version and build date of the library.

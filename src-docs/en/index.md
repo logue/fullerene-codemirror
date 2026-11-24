@@ -1,44 +1,32 @@
 ---
-description: Rspress starter homepage with guide, MDX, search, AI, SSG, and theme customization links.
+description: Carbon Design System based theme for CodeMirror 6, driven by --cds-* CSS custom properties.
 pageType: home
 
 hero:
-  name: My Site
-  text: A cool website!
-  tagline: This is the tagline
+  name: Fullerene CodeMirror
+  text: Carbon theme for CodeMirror 6
+  tagline: Follows Carbon's --cds-* design tokens, in light and dark mode.
   actions:
     - theme: brand
-      text: Quick Start
-      link: /guide/start/introduction
+      text: Get Started
+      link: /guide/start/getting-started
+    - theme: alt
+      text: Playground
+      link: /playground
     - theme: alt
       text: GitHub
-      link: https://github.com/web-infra-dev/rspress
-  image:
-    src: /rspress-icon.png
-    alt: Logo
+      link: https://github.com/logue/fullerene-codemirror
 features:
-  - title: Blazing fast build speed
-    details: The core compilation module is based on the Rust front-end toolchain, providing a more ultimate development experience.
-    icon: 🏃🏻‍♀️
-    link: /guide/start/introduction
-  - title: Support for MDX content writing
-    details: MDX is a powerful way to write content, allowing you to use React components in Markdown.
-    icon: 📦
-    link: /guide/use-mdx/components
-  - title: Built-in full-text search
-    details: Automatically generates a full-text search index for you during construction, providing out-of-the-box full-text search capabilities.
+  - title: Carbon design tokens
+    details: Editor chrome and syntax colors map to Carbon tokens such as --cds-background and --cds-syntax-*.
     icon: 🎨
-    link: https://rspress.rs/guide/advanced/custom-search
-  - title: AI-friendly
-    details: Generate llms.txt and Markdown files compliant with the llms.txt specification through SSG-MD, making it easier for large language models to understand and use your documentation.
-    icon: 🤖
-    link: https://rspress.rs/guide/basic/ssg-md
-  - title: Static site generation
-    details: In production, it automatically builds into static HTML files, which can be easily deployed anywhere.
-    icon: 🌈
-    link: https://rspress.rs/guide/basic/ssg
-  - title: Providing multiple custom capabilities
-    details: Through its extension mechanism, you can easily extend theme UI and build process.
-    icon: 🔥
-    link: https://rspress.rs/guide/basic/custom-theme
+    link: /guide/start/introduction
+  - title: Light and dark
+    details: Ships with White and Gray 100 fallback palettes, so it works even without Carbon on the page.
+    icon: 🌗
+    link: /guide/start/modes
+  - title: Variables mode
+    details: Reference --cds-* variables as-is and let the page's Carbon theme (g10, g90, g100…) decide every color.
+    icon: 🧩
+    link: /guide/start/modes#variables-mode
 ---

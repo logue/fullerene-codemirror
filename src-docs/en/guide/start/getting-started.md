@@ -1,53 +1,55 @@
 ---
-description: Set up an Rspress project, run local development, build production output, and choose next docs topics.
+description: Install @c60/codemirror-theme and add it to a CodeMirror editor.
 ---
 
-# Getting started
+# Getting Started
 
-## Project structure
+## Installation
 
-- `src-docs/` — The documentation source directory, configured via `root` in `rstack.config.ts`.
-- `src-docs/_nav.json` — The navigation bar configuration.
-- `src-docs/guide/_meta.json` — The sidebar configuration for the guide section.
-- `src-docs/public/` — Static assets directory.
-- `theme/` — Optional custom theme directory, generated when you choose the custom theme scaffold.
-- `rstack.config.ts` — The Rspress configuration file.
-
-## Development
-
-Start the local development server:
-
-```bash
-pnpm run dev:docs
+```sh
+pnpm add @c60/codemirror-theme
 ```
 
-:::tip
+The following peer dependencies are required (they are usually installed already with CodeMirror):
 
-You can specify the port number or host with `--port` or `--host`, such as `pnpm run dev:docs -- --port 8080 --host 0.0.0.0`.
+- `@codemirror/language`
+- `@codemirror/state`
+- `@codemirror/view`
+- `@lezer/highlight`
 
-:::
+## Usage
 
-## Production build
+```ts
+import { EditorView, basicSetup } from 'codemirror';
+import { carbonLight } from '@c60/codemirror-theme';
 
-Build the site for production:
-
-```bash
-pnpm run build:docs
+new EditorView({
+  doc: 'console.log("Hello, Carbon!");',
+  extensions: [basicSetup, carbonLight],
+  parent: document.body
+});
 ```
 
-The generated site is written to `docs/`, as configured in `rstack.config.ts`.
+Use `carbonDark` for a dark editor. To switch at runtime, put the theme in a
+[`Compartment`](https://codemirror.net/docs/ref/#state.Compartment):
 
-## Preview
+```ts
+import { Compartment } from '@codemirror/state';
+import { carbonDark, carbonLight } from '@c60/codemirror-theme';
 
-Preview the production build locally:
+const theme = new Compartment();
+const view = new EditorView({
+  extensions: [basicSetup, theme.of(carbonLight)],
+  parent: document.body
+});
 
-```bash
-pnpm run preview:docs
+const setDark = (dark: boolean) =>
+  view.dispatch({ effects: theme.reconfigure(dark ? carbonDark : carbonLight) });
 ```
 
-## Next steps
+## Fonts
 
-- Learn how to use [MDX & React Components](/guide/use-mdx/components) in your docs.
-- Learn about [Code Blocks](/guide/use-mdx/code-blocks/) syntax highlighting and line highlighting.
-- Learn about [Custom Containers](/guide/use-mdx/container) for tips, warnings, and more.
-- Explore the full [Rspress documentation](https://rspress.rs/) for advanced features.
+The theme uses IBM Plex Mono via `--cds-code-02-font-family` but does not load it.
+Load it yourself, for example with `@ibm/plex` or Google Fonts.
+
+Next: [Theme modes](./modes).

@@ -219,6 +219,10 @@ snapshots:
 					"specifier": "^11.86.0",
 					"version": "11.86.0",
 				},
+				"@carbon/type": {
+					"specifier": "^11.71.0",
+					"version": "11.71.0",
+				},
 				"@carbon/web-components": {
 					"specifier": "^2.68.0",
 					"version": "2.68.0",

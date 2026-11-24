@@ -1,32 +1,69 @@
 <!doctype html>
-<html class="cds--white" lang="en">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <title>Fullerene CodeMirror Theme Playground</title>
+    <script>
+      // Mark embedded mode before first paint to avoid a header/footer flash.
+      if (window.self !== window.top) document.documentElement.dataset.embedded = '';
+    </script>
   </head>
   <body>
-    <header class="demo-header">
-      <div class="demo-header__content">
-        <h1 class="demo-header__title">Fullerene CodeMirror Theme</h1>
-        <p>CodeMirror 6 theme built on Carbon Design System color tokens.</p>
+    <cds-header class="app-header" aria-label="Fullerene CodeMirror Theme Playground">
+      <cds-header-name prefix="@c60">CodeMirror Theme</cds-header-name>
+      <div class="cds--header__global">
+        <div class="header-theme-toggle">
+          <cds-toggle
+            id="theme-toggle"
+            label-a="Dark"
+            label-b="Light"
+            label-text="Dark mode"
+            hidelabel
+            size="sm"
+          ></cds-toggle>
+        </div>
+        <cds-header-global-action
+          href="https://logue.dev/fullerene-codemirror/"
+          tooltip-text="Documentation"
+          tooltip-alignment="right"
+          aria-label="Documentation"
+        >
+          <svg width="20" height="20" slot="icon" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M19 10h7v2h-7zm0 5h7v2h-7zm0 5h7v2h-7zM6 10h7v2H6zm0 5h7v2H6zm0 5h7v2H6z" />
+            <path
+              d="M28 5H4a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2ZM4 7h11v18H4Zm13 18V7h11v18Z"
+            />
+          </svg>
+        </cds-header-global-action>
+        <cds-header-global-action
+          href="https://github.com/logue/fullerene-codemirror"
+          tooltip-text="GitHub"
+          tooltip-alignment="right"
+          aria-label="GitHub"
+        >
+          <svg width="20" height="20" slot="icon" viewBox="0 0 32 32" aria-hidden="true">
+            <path
+              fill-rule="evenodd"
+              d="M16 2a14 14 0 0 0-4.43 27.28c.7.13 1-.3 1-.67v-2.38c-3.89.84-4.71-1.88-4.71-1.88a3.71 3.71 0 0 0-1.62-2.05c-1.27-.86.1-.85.1-.85a2.94 2.94 0 0 1 2.14 1.45 3 3 0 0 0 4.08 1.16 2.93 2.93 0 0 1 .88-1.87c-3.1-.36-6.37-1.56-6.37-6.92a5.4 5.4 0 0 1 1.44-3.76 5 5 0 0 1 .14-3.7s1.17-.38 3.85 1.43a13.3 13.3 0 0 1 7 0c2.67-1.81 3.84-1.43 3.84-1.43a5 5 0 0 1 .14 3.7 5.4 5.4 0 0 1 1.44 3.76c0 5.38-3.27 6.56-6.39 6.91a3.33 3.33 0 0 1 .95 2.59v3.84c0 .46.25.81 1 .67A14 14 0 0 0 16 2Z"
+            />
+          </svg>
+        </cds-header-global-action>
       </div>
-      <div class="demo-header__actions">
-        <cds-link href="https://github.com/logue/fullerene-codemirror">GitHub</cds-link>
-        <cds-toggle
-          id="theme-toggle"
-          label-a="Dark"
-          label-b="Light"
-          label-text="Theme"
-          size="sm"
-        ></cds-toggle>
-      </div>
-    </header>
-    <main class="demo-main">
-      <cds-grid class="demo-grid">
-        <cds-column lg="4" md="8" sm="4">
-          <cds-select id="language-select" label-text="Language" value="javascript">
+    </cds-header>
+
+    <main class="app-main">
+      <section class="intro">
+        <h1 class="intro__title">Fullerene CodeMirror Theme</h1>
+        <p class="intro__lead">
+          A CodeMirror 6 theme built on Carbon Design System tokens. Pick a language and a color
+          mode to see how the editor follows <code>--cds-*</code> variables.
+        </p>
+      </section>
+      <section class="workbench" aria-label="Playground">
+        <div class="toolbar">
+          <cds-select id="language-select" value="javascript" label-text="Language" size="md">
             <cds-select-item value="javascript">JavaScript</cds-select-item>
             <cds-select-item value="typescript">TypeScript</cds-select-item>
             <cds-select-item value="html">HTML</cds-select-item>
@@ -35,11 +72,27 @@
             <cds-select-item value="markdown">Markdown</cds-select-item>
             <cds-select-item value="python">Python</cds-select-item>
           </cds-select>
-        </cds-column>
-        <cds-column lg="16" md="8" sm="4">
+          <cds-select id="mode-select" value="palette" label-text="Color source" size="md">
+            <cds-select-item value="palette">Palette (with fallbacks)</cds-select-item>
+            <cds-select-item value="variables">CSS variables only</cds-select-item>
+          </cds-select>
+        </div>
+        <div class="editor-frame">
+          <div class="editor-frame__bar">
+            <span id="file-name" class="editor-frame__name">example.js</span>
+            <span id="theme-badge" class="editor-frame__badge">carbonLight</span>
+          </div>
           <code-mirror id="cm" class="demo-editor" basic></code-mirror>
-        </cds-column>
-      </cds-grid>
+        </div>
+      </section>
     </main>
+
+    <footer class="app-footer">
+      <p>
+        &copy; 2026 by <a href="https://logue.dev/">Logue</a>. Licensed under the
+        <a href="https://opensource.org/licenses/mit-license.php">MIT License</a>.
+      </p>
+      <p><a href="https://logue.dev/fullerene-codemirror/">Documentation</a></p>
+    </footer>
   </body>
 </html>

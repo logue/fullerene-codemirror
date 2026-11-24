@@ -213,7 +213,7 @@ define.doc({
   root: 'src-docs',
   outDir: 'docs',
   // If the package name and repository name are different, correct them as needed.
-  base: `/${packageJson.name.slice(packageJson.name.lastIndexOf('/') + 1)}/`,
+  base: `/fullerene-codemirror/`,
   route: { exclude: ['components/**'] },
   themeConfig: {
     socialLinks: [
@@ -235,8 +235,8 @@ define.doc({
     {
       lang: 'en',
       label: 'English',
-      title: 'My Site',
-      description: 'My site description'
+      title: 'Fullerene CodeMirror',
+      description: packageJson.description
     }
   ],
   // generate llms.txt
